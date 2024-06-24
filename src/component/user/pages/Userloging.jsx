@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { BASE_URL, POST_USER_LOGIN } from '../../../redux-saga/constant';
 import { GET_USER_PENDING } from '../../../redux-saga/admin/action';
+import { Link } from 'react-router-dom';
 
 const Userloging = () => {
 
@@ -37,6 +38,7 @@ const Userloging = () => {
         else {
             try {
                 let res = await axios.post(BASE_URL + POST_USER_LOGIN, user)
+                console.log(res,"userlogin");
                 let data = res.data.data;
                 let status = res.status;
 
@@ -62,11 +64,6 @@ const Userloging = () => {
                 console.log(error);
             }
         }
-    }
-
-    function adminLoginPage(e) {
-        e.preventDefault();
-        window.location.href="/adminlogin"
     }
 
     return (
@@ -95,7 +92,7 @@ const Userloging = () => {
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary w-100 mb-2" onClick={userLogin}>Sign in</button>
-                            <button type="submit" class="btn btn-primary w-100" onClick={adminLoginPage}>Admin Login</button>
+                            <Link to={"/adminlogin"} type="submit" class="btn btn-primary w-100">Admin Login</Link>
 
                         </form>
                     </div>

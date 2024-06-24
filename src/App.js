@@ -27,7 +27,7 @@ function App() {
   const location = useLocation();
   const loginPage = location.pathname === "/";
 
-  if (role === "") {
+  if (!role||role === "") {
     return (
       <Routes>
         <Route path="/" element={<Userloging />} />

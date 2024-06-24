@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useRef } from 'react'
 import Swal from 'sweetalert2';
 import { BASE_URL, POST_ADMIN } from '../../../redux-saga/constant';
+import { Link } from 'react-router-dom';
 
 const Adminlogin = () => {
 
@@ -87,7 +88,7 @@ const Adminlogin = () => {
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 mb-2" onClick={adminLogin}>Sign in</button>
-                        <button type="submit" class="btn btn-primary w-100" onClick={userLoginPage}>User Login</button>
+                        <Link to={"/"} type="submit" class="btn btn-primary w-100">User Login</Link>
                     </form>
                 </div>
             </div>
