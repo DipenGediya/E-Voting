@@ -1,0 +1,43 @@
+a{
+  text-decoration: none;
+}
+
+table thead tr th{
+  background-color:cornflowerblue !important;
+}
+
+table tbody tr td{
+  padding: 20px 12px !important;
+}
+
+.row {
+  --bs-gutter-x: 0rem;
+}
+
+/* =========================== dashboard ==================== */
+
+.home .boxes .box{
+  width: 400px;
+  border-radius: 10px;
+  height: 150px;
+  color: black;
+  font-size: 50px;
+  /* background-color: rgb(143, 178, 243); */
+  border: 1px solid rgb(214, 226, 250);
+  box-shadow: 1px 1px;
+}
+
+/* =================== userlogin ===================== */
+
+.userlogin .col-6:first-child{
+  background-color: rgb(35, 80, 163);
+}
+
+.userlogin form{
+  border-color: rgb(35, 80, 163);
+}
+
+.userlogin button{
+  background-color: rgb(35, 80, 163);
+  color: white;
+}
