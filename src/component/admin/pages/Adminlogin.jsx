@@ -26,6 +26,7 @@ const Adminlogin = () => {
         else {
             try {
                 let res = await axios.post(BASE_URL + POST_ADMIN, admin)
+                console.log(res,"from adminlogin");
                 let data = res.data.data;
                 let status = res.status;
 

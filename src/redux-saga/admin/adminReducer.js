@@ -1,11 +1,12 @@
 import React from 'react'
-import { DELETE_ELECTION_ERROR, DELETE_ELECTION_PENDING, DELETE_ELECTION_SUCCESS, DELETE_PARTY_CONNECTION_ERROR, DELETE_PARTY_CONNECTION_PENDING, DELETE_PARTY_CONNECTION_SUCCESS, DELETE_PARTY_ERROR, DELETE_PARTY_PENDING, DELETE_PARTY_SUCCESS, DELETE_USER_ERROR, DELETE_USER_PENDING, DELETE_USER_SUCCESS, GET_ELECTION_ERROR, GET_ELECTION_PENDING, GET_ELECTION_SUCCESS, GET_PARTY_CONNECTION_ERROR, GET_PARTY_CONNECTION_PENDING, GET_PARTY_CONNECTION_SUCCESS, GET_PARTY_ERROR, GET_PARTY_PENDING, GET_PARTY_SUCCESS, GET_USER_ERROR, GET_USER_PENDING, GET_USER_SUCCESS, POST_ELECTION_ERROR, POST_ELECTION_PENDING, POST_ELECTION_SUCCESS, POST_PARTY_CONNECTION_ERROR, POST_PARTY_CONNECTION_PENDING, POST_PARTY_CONNECTION_SUCCESS, POST_PARTY_ERROR, POST_PARTY_PENDING, POST_PARTY_SUCCESS, POST_USER_ERROR, POST_USER_PENDING, POST_USER_SUCCESS } from './action'
+import { DELETE_ELECTION_ERROR, DELETE_ELECTION_PENDING, DELETE_ELECTION_SUCCESS, DELETE_PARTY_CONNECTION_ERROR, DELETE_PARTY_CONNECTION_PENDING, DELETE_PARTY_CONNECTION_SUCCESS, DELETE_PARTY_ERROR, DELETE_PARTY_PENDING, DELETE_PARTY_SUCCESS, DELETE_USER_ERROR, DELETE_USER_PENDING, DELETE_USER_SUCCESS, GET_ELECTION_ERROR, GET_ELECTION_PENDING, GET_ELECTION_SUCCESS, GET_PARTY_CONNECTION_ERROR, GET_PARTY_CONNECTION_PENDING, GET_PARTY_CONNECTION_SUCCESS, GET_PARTY_ERROR, GET_PARTY_PENDING, GET_PARTY_SUCCESS, GET_USER_ERROR, GET_USER_PENDING, GET_USER_SUCCESS, GET_VOTE_ERROR, GET_VOTE_PENDING, GET_VOTE_SUCCESS, POST_ELECTION_ERROR, POST_ELECTION_PENDING, POST_ELECTION_SUCCESS, POST_PARTY_CONNECTION_ERROR, POST_PARTY_CONNECTION_PENDING, POST_PARTY_CONNECTION_SUCCESS, POST_PARTY_ERROR, POST_PARTY_PENDING, POST_PARTY_SUCCESS, POST_USER_ERROR, POST_USER_PENDING, POST_USER_SUCCESS, POST_VOTE_ERROR, POST_VOTE_SUCCESS } from './action'
 
 let initialState = {
     party: [],
     user: [],
     election: [],
     connection: [],
+    vote: [],
     isLoading: false,
     isError: null
 }
@@ -193,4 +194,40 @@ const connectionReducer = (state = initialState, action) => {
         }
     }
 }
-export { partyReducer, userReducer, electionReducer, connectionReducer }
+
+const voteReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case GET_VOTE_PENDING,GET_VOTE_PENDING: {
+            return {
+                ...state,
+                isLoading: true
+            }
+        }
+
+        case GET_VOTE_SUCCESS: {
+            return {
+                isLoading: false,
+                vote: action.payload
+            }
+        }
+
+        case POST_VOTE_SUCCESS:{
+            return{
+                isLoading:false,
+                vote:state.vote.concat(action.payload)
+            }
+        }
+
+        case GET_VOTE_ERROR,POST_VOTE_ERROR:{
+            return{
+                isLoading:false,
+                isError:action.payload
+            }
+        }
+        default:
+            return{
+                ...state
+            }
+    }
+}
+export { partyReducer, userReducer, electionReducer, connectionReducer ,voteReducer }

@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
-import Tables from '../../../atoms/Tables'
 import { useDispatch, useSelector } from 'react-redux'
-import { GET_PARTY_PENDING } from '../../../redux-saga/admin/action'
+import { GET_PARTY_PENDING, GET_VOTE_PENDING } from '../../../redux-saga/admin/action'
 
 const Dashboard = () => {
     let dispatch = useDispatch()
 
     let partyData = useSelector((state) => state.partyReducer.party)
 
+    let voteData = useSelector((state) => state.voteReducer.vote)
+
     useEffect(() => {
         dispatch({ type: GET_PARTY_PENDING })
+        dispatch({ type: GET_VOTE_PENDING })
     }, [])
 
-    console.log(partyData, "from dashboard")
+    // console.log(partyData, "from dashboard")
+    console.log(voteData, "from dashboard")
 
     return (
         <>
@@ -20,11 +23,16 @@ const Dashboard = () => {
 
                 <div className="boxes text-center my-4 d-flex justify-content-between">
                     <div className="box">
-                        <span>1</span>
-                        
+                        <span>{partyData.length}</span><br />
+                        <span style={{ fontSize: "40px" }}>Total Party</span>
                     </div>
-                    <div className="box">1</div>
-                    <div className="box">1</div>
+                    <div className="box">
+                        <span>{voteData?.length}</span><br />
+                        <span style={{ fontSize: "40px" }}>Total Vote</span>
+                    </div>
+                    <div className="box">
+                        <span>1</span>
+                    </div>
 
                 </div>
 
@@ -46,8 +54,7 @@ const Dashboard = () => {
                                 <th>{index + 1}</th>
                                 <td><img src={val.party_logo} width="50px" alt="" /></td>
                                 <td>{val.party_name}</td>
-                                <td>{val.short_code}</td>
-                                <td>{val.voting}</td>
+                                <td>{val.short_code}</td>                                
                             </tr>
                         ))}
                     </tbody>

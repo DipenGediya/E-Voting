@@ -35,7 +35,7 @@ const Voting = () => {
                                         <td><img src={val.party?.party_logo} width="35px" alt="" /></td>
                                         <td>{val.party?.party_name}</td>
                                         <td>{val.election?.election_name}</td>
-                                        <td></td>
+                                        <td> <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/></td>
                                     </tr>
                                 )
                             })

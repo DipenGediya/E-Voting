@@ -38,14 +38,15 @@ const Userloging = () => {
         else {
             try {
                 let res = await axios.post(BASE_URL + POST_USER_LOGIN, user)
-                console.log(res,"userlogin");
+                console.log(res," userlogin");
                 let data = res.data.data;
                 let status = res.status;
 
                 if (status == 200) {
-                    if (userData.find((val) => val.cardNo == user.cardNo)) {
+                    if (!userData.find((val) => val.cardNo == user.cardNo)) {
                         localStorage.setItem("role", "user");
                         localStorage.setItem("userDetails", JSON.stringify(data))
+                        alert("login success")
                         setTimeout(() => {
                             window.location.href = "/voting"
                         }, 500)

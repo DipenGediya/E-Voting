@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Profile = () => {
 
@@ -11,6 +11,14 @@ const Profile = () => {
   //           "assemblyNoandName": "utran-8",
   //           "partNoandName": "utran",
   //           "password": "123",
+
+  const [userDetails, setuserDetails] = useState([])
+
+  // let userDetails = localStorage.getItem("userDetails")
+
+  useEffect(() => {
+    setuserDetails(localStorage.getItem("userDetails"))
+  }, [])
   return (
     <>
       <section className="profile ms-3 p-2 w-100">
@@ -20,15 +28,15 @@ const Profile = () => {
             userDetails.map((val, index) => {
               return (
                 <>
-                  <p>CardNo :-</p>
-                  <p>Name :-</p>
-                  <p>Father Name :-</p>
-                  <p>Gender :-</p>
-                  <p>Birth Date :-</p>
-                  <p>Address :-</p>
-                  <p>Assembly No and Name :-</p>
-                  <p>Part No and Name :-</p>
-                  <p>Password :-</p>
+                  <p>CardNo :- {val.cardNo}</p>
+                  <p>Name :- {val.name}</p>
+                  <p>Father Name :- {val.fatherName}</p>
+                  <p>Gender :- {val.sex}</p>
+                  <p>Birth Date :- {val.dob}</p>
+                  <p>Address :- {val.address}</p>
+                  <p>Assembly No and Name :- {val.assemblyNoandName}</p>
+                  <p>Part No and Name :- {val.partNoandName}</p>
+                  <p>Password :- {val.password}</p>
                 </>
               )
             })
