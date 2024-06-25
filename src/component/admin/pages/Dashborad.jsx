@@ -54,7 +54,8 @@ const Dashboard = () => {
                                 <th>{index + 1}</th>
                                 <td><img src={val.party_logo} width="50px" alt="" /></td>
                                 <td>{val.party_name}</td>
-                                <td>{val.short_code}</td>                                
+                                <td>{val.short_code}</td>
+                                                                
                             </tr>
                         ))}
                     </tbody>
